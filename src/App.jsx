@@ -26,7 +26,7 @@ function App(props) {
       <div className={`h-screen w-screen ${isDarkMode ? 'bg-black' : 'bg-white'} flex relative`}>
         <img
           id="icon"
-          className={`bottom-2 absolute top-4 right-2 h-10 w-10 cursor-pointer`}
+          className={`bottom-2 absolute top-4 left-2 h-10 w-10 cursor-pointer`}
           onClick={SwitchMode}
           src={iconSrc}
           alt="icon"
@@ -36,7 +36,7 @@ function App(props) {
             <div>
               {arr.map((ele, index) => (
                 <div key={index} className={`rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
-                  <p className={`font-Poppins font-semibold relative left-[75%] inline`}>{props.userName}:</p>
+                  <p className={`font-Poppins font-semibold relative  inline`}>{props.userName}:</p>
                   <p className={`break-words font-Poppins`}>{arr[arr.length - 1 - index]}</p>
                 </div>
               ))}
