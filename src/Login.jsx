@@ -18,7 +18,7 @@ function Login() {
             onChange={(e) => setName(e.target.value)}
             value={userName}
             placeholder='Enter Your Name'
-            className=' font-Poppins bg-zinc-800 rounded-lg p-2 text-white'
+            className=' placeholder: font-poppins font-Poppins bg-zinc-800 rounded-lg p-2 text-white'
           />
         </form>
       )}
