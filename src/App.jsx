@@ -5,9 +5,11 @@ import Image1 from './dark-mode.png';
 function App(props) {
   const [arr, setArr] = useState([]);
   const [message, setMessage] = useState('');
-  const [iconSrc, setIconSrc] = useState(Image0);
-  const [bgColor,setBGColor]=useState("black")
-  const [textColor,setTextColor]=useState("white")
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const iconSrc = isDarkMode ? Image0 : Image1;
+  const bgColor = isDarkMode ? 'black' : 'white';
+  const textColor = isDarkMode ? 'white' : 'black';
+
   function buildMessage(e) {
     setMessage(e.target.value);
   }
@@ -18,28 +20,26 @@ function App(props) {
   }
 
   function SwitchMode() {
-    setIconSrc(prevSrc => (prevSrc === Image0 ? Image1 : Image0));
-    setBGColor(prev=>prev==="black"?"white":"black")
-    setTextColor(prev=>prev==="white"?"black":"white")
+    setIsDarkMode(prevMode => !prevMode);
   }
 
   return (
     <>
-      <div className={`h-screen w-screen bg-${bgColor} flex relative`}>
+      <div className={`h-screen w-screen ${isDarkMode ? 'bg-black' : 'bg-white'} flex relative`}>
         <img
           id="icon"
-          className={`text-${textColor} bottom-2 absolute top-4 right-2 h-10 w-10`}
+          className={`bottom-2 absolute top-4 right-2 h-10 w-10 cursor-pointer`}
           onClick={SwitchMode}
           src={iconSrc}
           alt="icon"
         />
-        <div className={`bg-${bgColor} flex flex-col justify-end flex-grow px-4 text-white`}>
+        <div className={`flex flex-col justify-end flex-grow px-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
           <div className='w-full flex justify-end mr-4 overflow-scroll'>
             <div>
               {arr.map((ele, index) => (
-                <div key={index} className={`bg-${textColor} rounded-lg w-40 mt-2 p-2 font-extralight`}>
-                  <p className={`text-${bgColor} font-Poppins font-semibold relative left-[75%] inline`}>{props.userName}:</p>
-                  <p className={`text-${bgColor} break-words font-Poppins`}>{arr[arr.length - 1 - index]}</p>
+                <div key={index} className={`rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                  <p className={`font-Poppins font-semibold relative left-[75%] inline`}>{props.userName}:</p>
+                  <p className={`break-words font-Poppins`}>{arr[arr.length - 1 - index]}</p>
                 </div>
               ))}
             </div>
@@ -48,7 +48,7 @@ function App(props) {
           <input
             onChange={buildMessage}
             value={message}
-            className="mb-2 p-1 text-white bg-gray-700 rounded placeholder:font-Poppins"
+            className={`mb-2 p-1 ${isDarkMode ? 'text-white bg-gray-700' : 'text-black bg-gray-300'} rounded placeholder:font-Poppins`}
             placeholder={`Type something...`}
           />
           <input
