@@ -7,8 +7,6 @@ function App(props) {
   const [message, setMessage] = useState('');
   const [isDarkMode, setIsDarkMode] = useState(true);
   const iconSrc = isDarkMode ? Image0 : Image1;
-  const bgColor = isDarkMode ? 'black' : 'white';
-  const textColor = isDarkMode ? 'white' : 'black';
 
   function buildMessage(e) {
     setMessage(e.target.value);
@@ -48,7 +46,7 @@ function App(props) {
           <input
             onChange={buildMessage}
             value={message}
-            className={`mb-2 p-1 ${isDarkMode ? 'text-white bg-gray-700' : 'text-black bg-gray-300'} rounded placeholder:font-Poppins`}
+            className={`mb-2 p-1 ${isDarkMode ? 'text-white bg-gray-700' : 'text-black bg-gray-300'} rounded placeholder:font-Poppins ${isDarkMode?'placeholder-white-800':'placeholder-black'}`}
             placeholder={`Type something...`}
           />
           <input
