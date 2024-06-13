@@ -46,7 +46,7 @@ function App(props) {
           <input
             onChange={buildMessage}
             value={message}
-            className={`mb-2 p-1 ${isDarkMode ? 'text-white bg-gray-700' : 'text-black bg-gray-300'} rounded placeholder:font-Poppins ${isDarkMode?'placeholder-white-800':'placeholder-black'}`}
+            className={` font-Poppins mb-2 p-1 ${isDarkMode ? 'text-white bg-gray-700' : 'text-black bg-gray-300'} rounded placeholder:font-Poppins ${isDarkMode?'placeholder-white-800':'placeholder-black'}`}
             placeholder={`Type something...`}
           />
           <input
