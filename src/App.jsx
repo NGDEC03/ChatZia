@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Axios from 'axios'
+import axios from 'axios'
 import Image0 from './brightness.png';
 import Image1 from './dark-mode.png';
 import { useEffect } from 'react';
@@ -12,7 +12,7 @@ function App(props) {
   const [time, setTime] = useState([])
   useEffect(() => {
     async function helper() {
-      const response = await Axios.post("http://localhost:3000/fetchMessage", { userName: props.userName });
+      const response = await axios.post("http://localhost:3000/fetchMessage", { userName: props.userName });
       console.log(response.data);
       const fetchedMessages = response.data.map(item => item.message);
       const fetchedTimes = response.data.map(item => item.sentAt)
@@ -30,7 +30,7 @@ function App(props) {
   async function showMessage(e) {
     // let time=`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
 
-    const resp = await Axios.post("http://localhost:3000/setMessage", { message, userName: props.userName })
+    const resp = await axios.post("http://localhost:3000/setMessage", { message, userName: props.userName })
     // console.log(props.userName);
     console.log(typeof time);
     setChats([...chats, message]);
