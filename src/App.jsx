@@ -1,19 +1,37 @@
 import React, { useState } from 'react';
+import Axios from 'axios'
 import Image0 from './brightness.png';
 import Image1 from './dark-mode.png';
-
+import { useEffect } from 'react';
 function App(props) {
-  const [arr, setArr] = useState([]);
+  
+  const [chats, setChats] = useState([]);
   const [message, setMessage] = useState('');
   const [isDarkMode, setIsDarkMode] = useState(true);
   const iconSrc = isDarkMode ? Image0 : Image1;
+  
+  useEffect(()=>{
+ async function helper(){
+  const response = await Axios.post("http://localhost:3000/fetchMessage", { userName: props.userName });
+  console.log(response.data);
+  const fetchedMessages = response.data.map(item => item.message);
+  console.log(fetchedMessages); // Assuming response.data is an array of messages
+  setChats([...fetchedMessages]);
+ }   
+helper()
+      },[])
 
   function buildMessage(e) {
     setMessage(e.target.value);
   }
 
-  function showMessage() {
-    setArr([...arr, message]);
+  async function showMessage(e) {
+    let time=`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+    
+    // const resp=await Axios.post("http://localhost:3000/setMessage",{message,time,userName:props.userName})
+// console.log(props.userName);
+console.log(typeof time);
+    setChats([...chats, message]);
     setMessage('');
   }
 
@@ -34,10 +52,11 @@ function App(props) {
         <div className={`flex flex-col justify-end flex-grow px-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
           <div className='w-full flex justify-end mr-4 overflow-scroll'>
             <div>
-              {arr.map((ele, index) => (
-                <div key={index} className={`rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+              {chats.map((ele, index) => (
+                <div key={index} className={`rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'} relative`}>
                   <p className={`font-Poppins font-semibold relative  inline`}>{props.userName}:</p>
-                  <p className={`break-words font-Poppins`}>{arr[arr.length - 1 - index]}</p>
+                  <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
+                  <span className='text-xs  absolute right-1 bottom-1'>{new Date().getHours()}:{new Date(Date.now()).getMinutes()}:{new Date(Date.now()).getSeconds()}</span>
                 </div>
               ))}
             </div>
@@ -45,6 +64,11 @@ function App(props) {
           <div className='h-8'></div>
           <input
             onChange={buildMessage}
+            onKeyDown={(e)=>{if(e.key==='Enter'){
+              showMessage()
+              // setChats([...chats, message]);
+              // setMessage('');
+            }}}
             value={message}
             className={` font-Poppins mb-2 p-1 ${isDarkMode ? 'text-white bg-gray-700' : 'text-black bg-gray-300'} rounded placeholder:font-Poppins ${isDarkMode?'placeholder-white-800':'placeholder-black'}`}
             placeholder={`Type something...`}
