@@ -7,7 +7,7 @@ export default defineConfig({
 
   build: {
     rollupOptions: {
-      external: ['axios']
+      external: []
     }
   },
 
