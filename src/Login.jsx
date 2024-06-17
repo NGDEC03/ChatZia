@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import App from './App.jsx';
 import axios from 'axios'
+import  Untitled from './Untitled.png'
 function Login() {
   const [isLoggedIn, setLogin] = useState(false);
   const [userName, setName] = useState("");
@@ -24,7 +25,7 @@ function Login() {
             placeholder='Enter Your Name'
             className=' placeholder: font-poppins font-Poppins bg-zinc-800 rounded-lg p-2 text-white'
           />
-          <input type='submit'></input>
+          <input type='submit' className='ml-2 rounded-lg border-2 p-2 border-zinc-600' value={"Enter"}></input>
         </form>
       )}
     </div>
