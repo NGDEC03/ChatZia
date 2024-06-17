@@ -19,13 +19,15 @@ function Login() {
           setTimeout(()=>{setLogin(true)},300)
           
         }}>
+          <div className=' flex flex-col'>
           <input
             onChange={(e) => setName(e.target.value)}
             value={userName}
             placeholder='Enter Your Name'
-            className=' placeholder: font-poppins font-Poppins bg-zinc-800 rounded-lg p-2 text-white'
+            className=' placeholder: font-poppins font-Poppins bg-zinc-800 rounded-lg p-2 text-white '
           />
-          <input type='submit' className='ml-2 rounded-lg border-2 p-2 border-zinc-600' value={"Enter"}></input>
+          <input type='submit' className=' mt-2 rounded-lg border-2 p-2 border-zinc-600' value={"Go"}></input>
+          </div>
         </form>
       )}
     </div>
