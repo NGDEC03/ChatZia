@@ -24,7 +24,7 @@ function Login() {
             placeholder='Enter Your Name'
             className=' placeholder: font-poppins font-Poppins bg-zinc-800 rounded-lg p-2 text-white'
           />
-          
+          <input type='submit'></input>
         </form>
       )}
     </div>
