@@ -8,18 +8,21 @@ function App(props) {
 
   const [chats, setChats] = useState([]);
   const [message, setMessage] = useState('');
+  const [userNames,setUserNames]=useState([])
   const [isDarkMode, setIsDarkMode] = useState(true);
   const iconSrc = isDarkMode ? Image0 : Image1;
   const [time, setTime] = useState([])
   useEffect(() => {
     async function helper() {
-      const response = await axios.post("https://chatifly-backend.vercel.app/fetchMessage", { userName: props.userName });
+      const response = await axios.post("https://chatifly-backend.vercel.app/fetchMessage");
       console.log(response.data);
       const fetchedMessages = response.data.map(item => item.message);
       const fetchedTimes = response.data.map(item => item.sentAt)
+      const fetchedUserNames=response.data.map(item=>item.userName)
       console.log(fetchedMessages); // Assuming response.data is an array of messages
       setChats([...fetchedMessages]);
       setTime([...fetchedTimes])
+      setUserNames([...fetchedUserNames])
     }
     helper()
   }, [])
@@ -59,7 +62,7 @@ function App(props) {
             <div>
               {chats.map((ele, index) => (
                 <div key={index} className={`rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'} relative`}>
-                  <p className={`font-Poppins font-semibold relative  inline`}>{props.userName}:</p>
+                  <p className={`font-Poppins font-semibold relative  inline`}>{userNames[userNames.length - 1 - index]}:</p>
                   <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
                   <span className='text-xs  absolute right-1  bottom-1'>{time[time.length - 1 - index]}</span>
                 </div>
