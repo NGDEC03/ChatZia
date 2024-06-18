@@ -60,13 +60,22 @@ function App(props) {
         <div className={`flex flex-col justify-end flex-grow px-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
           <div className='w-full flex justify-end mr-4 overflow-scroll'>
             <div>
-              {chats.map((ele, index) => (
+              {chats.map((ele, index) => {
+               if(userNames[userNames.length-1-index]!==props.userName){
+                <div key={index} className={`rounded-lg w-40 mt-2 p-2 mr-[90vw] font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'} relative`}>
+                <p className={`font-Poppins font-semibold relative  inline`}>{userNames[userNames.length - 1 - index]}:</p>
+                <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
+                <span className='text-xs  absolute right-1  bottom-1'>{time[time.length - 1 - index]}</span>
+              </div>
+               }
+               else{
                 <div key={index} className={`rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'} relative`}>
-                  <p className={`font-Poppins font-semibold relative  inline`}>{userNames[userNames.length - 1 - index]}:</p>
-                  <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
-                  <span className='text-xs  absolute right-1  bottom-1'>{time[time.length - 1 - index]}</span>
-                </div>
-              ))}
+                <p className={`font-Poppins font-semibold relative  inline`}>{userNames[userNames.length - 1 - index]}:</p>
+                <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
+                <span className='text-xs  absolute right-1  bottom-1'>{time[time.length - 1 - index]}</span>
+              </div>
+               }
+})}
             </div>
           </div>
           <div className='h-8'></div>
