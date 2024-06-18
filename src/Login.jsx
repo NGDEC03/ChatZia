@@ -11,7 +11,7 @@ function Login() {
       {isLoggedIn ? (
         <App userName={userName} />
       ) : (
-        <form className="border-2 border-black p-4"onSubmit={async (e) => {
+        <form className="border-2 border-black p-4" onSubmit={async (e) => {
           e.preventDefault();
           const resp=await axios.post("http://localhost:3000/registerUser",{userName})
           // console.log(resp.data.userName);
