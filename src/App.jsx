@@ -12,7 +12,7 @@ function App(props) {
   const [time, setTime] = useState([])
   useEffect(() => {
     async function helper() {
-      const response = await axios.post("http://localhost:3000/fetchMessage", { userName: props.userName });
+      const response = await axios.post("https://chatifly-backend.vercel.app/fetchMessage", { userName: props.userName });
       console.log(response.data);
       const fetchedMessages = response.data.map(item => item.message);
       const fetchedTimes = response.data.map(item => item.sentAt)
@@ -30,7 +30,7 @@ function App(props) {
   async function showMessage(e) {
     // let time=`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
 
-    const resp = await axios.post("http://localhost:3000/setMessage", { message, userName: props.userName })
+    const resp = await axios.post("https://chatifly-backend.vercel.app/setMessage", { message, userName: props.userName })
     // console.log(props.userName);
     console.log(typeof time);
     setChats([...chats, message]);
