@@ -13,7 +13,7 @@ function Login() {
       ) : (
         <form className="border-2 border-black p-4"onSubmit={async (e) => {
           e.preventDefault();
-          const resp=await axios.post("http://localhost:3000/registerUser",{userName})
+          const resp=await axios.post("chatifly.vercel.app/registerUser",{userName})
           // console.log(resp.data.userName);
           alert(resp.data.message)
           setTimeout(()=>{setLogin(true)},300)
