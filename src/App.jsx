@@ -15,11 +15,11 @@ function App(props) {
   useEffect(() => {
     async function helper() {
       const response = await axios.post("https://chatifly-backend.vercel.app/fetchMessage");
-      console.log(response.data);
+
       const fetchedMessages = response.data.map(item => item.message);
       const fetchedTimes = response.data.map(item => item.sentAt)
       const fetchedUserNames=response.data.map(item=>item.userName)
-      console.log(fetchedMessages); // Assuming response.data is an array of messages
+      
       setChats([...fetchedMessages]);
       setTime([...fetchedTimes])
       setUserNames([...fetchedUserNames])
@@ -62,6 +62,7 @@ function App(props) {
             <div>
               {chats.map((ele, index) => {
                if(userNames[userNames.length-1-index]!==props.userName){
+                console.log(2);
                 <div key={index} className={`rounded-lg w-40 mt-2 p-2 mr-[90vw] font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'} relative`}>
                 <p className={`font-Poppins font-semibold relative  inline`}>{userNames[userNames.length - 1 - index]}:</p>
                 <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
