@@ -63,7 +63,7 @@ function App(props) {
               {chats.map((ele, index) => {
                if(userNames[userNames.length-1-index]!==props.userName){
                 console.log(2);
-                 return <div key={index} className={`rounded-lg w-40 mt-2 p-2 mr-[50vw] font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'} relative`}>
+                 return <div key={index} className={`rounded-lg w-40 mt-2 p-2 mr-[90vw] font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'} relative`}>
                 <p className={`font-Poppins font-semibold relative  inline`}>{userNames[userNames.length - 1 - index]}:</p>
                 <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
                 <span className='text-xs  absolute right-1  bottom-1'>{time[time.length - 1 - index]}</span>
