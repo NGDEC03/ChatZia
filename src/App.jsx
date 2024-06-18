@@ -59,7 +59,7 @@ function App(props) {
         />
         <div className={`flex flex-col justify-end flex-grow px-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
           <div className='w-full flex justify-end mr-4 overflow-scroll'>
-            <div>
+            <div className='w-full'>
               {chats.map((ele, index) => {
                if(userNames[userNames.length-1-index]!==props.userName){
                 console.log(2);
