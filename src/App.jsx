@@ -3,6 +3,7 @@ import axios from 'axios'
 import Image0 from './brightness.png';
 import Image1 from './dark-mode.png';
 import { useEffect } from 'react';
+
 function App(props) {
 
   const [chats, setChats] = useState([]);
@@ -35,7 +36,7 @@ function App(props) {
     console.log(typeof time);
     setChats([...chats, message]);
     let date = new Date()
-    setTime([...time, new Date().toLocaleTimeString()])
+    setTime([...time, new Date().toLocaleTimeString({hour12:false})])
     setMessage('');
   }
 
