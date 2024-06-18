@@ -36,7 +36,7 @@ function App(props) {
     console.log(typeof time);
     setChats([...chats, message]);
     let date = new Date()
-    setTime([...time, new Date().toLocaleTimeString({hour12:false})])
+    setTime([...time, new Date().toLocaleTimeString('en-US', { hour12: false })])
     setMessage('');
   }
 
