@@ -36,7 +36,7 @@ const flag=useRef(false)
     
     // let time=`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
 
-    const resp = await axios.post("hhttps://chatifly-backend.vercel.app/setMessage", { message, userName: props.userName })
+    const resp = await axios.post("https://chatifly-backend.vercel.app/setMessage", { message, userName: props.userName })
     // console.log(props.userName);
     // console.log(typeof time);
     setChats([...chats, message]);
