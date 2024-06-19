@@ -25,7 +25,7 @@ const flag=useRef(false)
       setUserNames([...fetchedUserNames])
     }
     helper()
-    flag.current=true
+    // flag.current=true
   }, [])
 
   function buildMessage(e) {
@@ -43,6 +43,7 @@ const flag=useRef(false)
     let date = new Date()
     setTime([...time, new Date().toLocaleTimeString('en-US', { hour12: false })])
     setMessage('');
+    flag.current=true
   }
 
   function SwitchMode() {
@@ -63,14 +64,14 @@ const flag=useRef(false)
           <div className='w-full flex justify-end mr-4 overflow-scroll'>
             <div className='mt-24'>
               {chats.map((ele, index) => {
-                if(flag){
+                if(flag.current){
                   return <div key={index} className={` relative -left-[85vw] rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
                 <p className={`font-Poppins font-semibold relative  inline`}>{props.userName}:</p>
                 <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
                 <span className='text-xs  absolute right-1  bottom-1'>{time[time.length - 1 - index]}</span>
               </div>
                 }
-                  else if(props.userName!=userNames[userNames.length-1-index]){
+                   if(props.userName!=userNames[userNames.length-1-index]){
                     return <div key={index} className={` relative -left-[85vw] rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
                 <p className={`font-Poppins font-semibold relative  inline`}>{userNames[userNames.length - 1 - index]}:</p>
                 <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
