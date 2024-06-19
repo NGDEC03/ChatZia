@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import axios from 'axios'
 import Image0 from './brightness.png';
 import Image1 from './dark-mode.png';
 import { useEffect } from 'react';
 
 function App(props) {
-
+const flag=useRef(false)
   const [chats, setChats] = useState([]);
   const [message, setMessage] = useState('');
   const [userNames,setUserNames]=useState([])
@@ -25,6 +25,7 @@ function App(props) {
       setUserNames([...fetchedUserNames])
     }
     helper()
+    flag.current=true
   }, [])
 
   function buildMessage(e) {
@@ -32,11 +33,12 @@ function App(props) {
   }
 
   async function showMessage(e) {
+    
     // let time=`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
 
-    const resp = await axios.post("https://chatifly-backend.vercel.app/setMessage", { message, userName: props.userName })
+    const resp = await axios.post("hhttps://chatifly-backend.vercel.app/setMessage", { message, userName: props.userName })
     // console.log(props.userName);
-    console.log(typeof time);
+    // console.log(typeof time);
     setChats([...chats, message]);
     let date = new Date()
     setTime([...time, new Date().toLocaleTimeString('en-US', { hour12: false })])
@@ -59,23 +61,31 @@ function App(props) {
         />
         <div className={`flex flex-col justify-end flex-grow px-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
           <div className='w-full flex justify-end mr-4 overflow-scroll'>
-            <div className='w-full'>
+            <div className='mt-24'>
               {chats.map((ele, index) => {
-               if(userNames[userNames.length-1-index]!==props.userName){
-                console.log(2);
-                 return <div key={index} className={`rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'} relative`}>
+                if(flag){
+                  return <div key={index} className={` relative -left-[85vw] rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                <p className={`font-Poppins font-semibold relative  inline`}>{props.userName}:</p>
+                <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
+                <span className='text-xs  absolute right-1  bottom-1'>{time[time.length - 1 - index]}</span>
+              </div>
+                }
+                  else if(props.userName!=userNames[userNames.length-1-index]){
+                    return <div key={index} className={` relative -left-[85vw] rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
                 <p className={`font-Poppins font-semibold relative  inline`}>{userNames[userNames.length - 1 - index]}:</p>
                 <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
                 <span className='text-xs  absolute right-1  bottom-1'>{time[time.length - 1 - index]}</span>
               </div>
-               }
+                  }
+               
                else{
                 return <div key={index} className={`rounded-lg w-40 mt-2 p-2 font-extralight ${isDarkMode ? 'bg-white text-black' : 'bg-black text-white'} relative`}>
                 <p className={`font-Poppins font-semibold relative  inline`}>{userNames[userNames.length - 1 - index]}:</p>
                 <p className={`break-words font-Poppins`}>{chats[chats.length - 1 - index]}</p>
                 <span className='text-xs  absolute right-1  bottom-1'>{time[time.length - 1 - index]}</span>
               </div>
-               }
+              }
+               
 })}
             </div>
           </div>
