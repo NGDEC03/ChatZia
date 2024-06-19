@@ -14,7 +14,7 @@ function Login() {
     setLoading(true);
     try {
       const response = await axios.post("https://chatifly-backend.vercel.app/registerUser", { userName });
-      alert(response.data.message);
+      // alert(response.data.message);
       setLogin(true);
     } catch (error) {
       setError("Failed to register. Please try again.");
