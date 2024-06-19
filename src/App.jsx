@@ -85,7 +85,7 @@ function App({ userName }) {
       {/* Chat Messages */}
       <div className="flex-1 p-4 overflow-y-auto">
         {chats.map((ele, index) => (
-          <div key={index} className={` relative mb-4 ${userName !== userNames[index] ? 'ml-auto' : 'left-[85vw]'}`}>
+          <div key={index} className={` relative mb-4 ${userName !== userNames[index] ? 'ml-auto' : ''} `}>
             <div className={` w-40 break-words p-4 rounded-lg ${userName !== userNames[index] ? 
                 (isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-200 text-gray-800') : 
                 (isDarkMode ? 'bg-blue-500 text-white' : 'bg-black text-white')}`}>
