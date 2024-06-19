@@ -13,7 +13,7 @@ function App({ userName }) {
 
   const fetchMessages = useCallback(async () => {
     try {
-      const response = await axios.post("https://chatifly-backend.vercel.app/fetchMessage");
+      const response = await axios.post("https://chatzia-backend.vercel.app/fetchMessage");
       const data = response.data.reverse();
 
       const fetchedMessages = data.map(item => item.message);
@@ -46,7 +46,7 @@ function App({ userName }) {
     };
 
     try {
-      const response = await axios.post("https://chatifly-backend.vercel.app/setMessage", newMessage);
+      const response = await axios.post("https://chatzia-backend.vercel.app/setMessage", newMessage);
       if (response.status === 200) {
         setChats(prevChats => [newMessage.message, ...prevChats]);
         setTimes(prevTimes => [newMessage.sentAt, ...prevTimes]);

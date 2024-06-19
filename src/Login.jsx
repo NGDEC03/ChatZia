@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("https://chatifly-backend.vercel.app/registerUser", { userName });
+      const response = await axios.post("https://chatzia-backend.vercel.app/registerUser", { userName });
       // alert(response.data.message);
       setLogin(true);
     } catch (error) {
