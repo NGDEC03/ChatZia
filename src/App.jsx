@@ -72,7 +72,7 @@ function App({ userName }) {
     <div className={`h-screen w-screen flex flex-col ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-800'}`}>
       {/* Header */}
       <div className={`p-4 flex items-center justify-between ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
-        <h1 className="text-xl font-semibold font-Poppins">Chat Application</h1>
+        <h1 className="text-xl font-semibold font-Poppins">ChatZia</h1>
         <img
           id="icon"
           className="h-8 w-8 cursor-pointer"
