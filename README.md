@@ -16,3 +16,6 @@ ChatZia is a robust group chat application built using React, MongoDB, Express.j
     Backend: Node.js, Express.js
     Database: MongoDB
     Deployment: Vercel
+
+    
+Wanna Try !! check out [ChatZia](https://chatzia.vercel.app/).
